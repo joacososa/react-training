@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Button } from 'react-bootstrap';
 import './styles.scss';
 
 class ProductList extends React.Component {
@@ -10,14 +9,10 @@ class ProductList extends React.Component {
 
    render(){
     return (
-        <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" className="card-header-img" src={this.props.product.imageUrl} />
-            <Card.Body className="card-body">
-                <Card.Title> {this.props.product.name}</Card.Title>
-                <Card.Text> {this.props.product.description} </Card.Text>
-            <Button variant="primary">Add to cart</Button>
-            </Card.Body>
-        </Card>
+        <div className="product-container">
+            <p>{this.props.product.name}</p>
+            <p>{this.props.product.description}</p>
+        </div>
     );
   }  
 }
