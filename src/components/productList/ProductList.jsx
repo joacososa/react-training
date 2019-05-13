@@ -8,7 +8,7 @@ class ProductList extends React.Component {
       this.state = {
           products: [
               {
-                  ide: 1,
+                  id: 1,
                   name: 'Vino',
                   description: 'Alamos Malbec',
                   imageUrl: 'https://http2.mlstatic.com/vino-alamos-malbec-the-wines-of-catena-D_NQ_NP_781653-MLA27334651688_052018-F.jpg'
