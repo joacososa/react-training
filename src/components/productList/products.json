@@ -1,0 +1,18 @@
+{ "products" : [
+    {
+       "id": 1,
+       "name": "Vino",
+       "description": "Alamos Malbec"
+    },
+    {
+       "id": 2,
+       "name": "Cerveza",
+       "description": "Ipa Atomica"
+    },
+    {
+       "id": 3,
+       "name": "Fernet",
+       "description": "Branca Clasico"
+    }
+ ]
+}
