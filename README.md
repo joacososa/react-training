@@ -1,25 +1,25 @@
-### Ejercicio 3
+## Ejercicio 3
 
 ## Agregar Validacion al formulario utilizando Formik con Yup
-    Proceso de instalacion de formik y yup
+Proceso de instalacion de formik y yup
     # `npm install formik yup --save`
 
-    En el Componente del formulario 
+En el Componente del formulario 
     # `import { Formik } from  'formik';`
     # `import * as yup from 'yup';` 
 
 ## Background:
 
-   - Fromik es una libreria react que permite validar y manipular formularios de forma muy eficiente
-   - Esta se combina de forma excelente con yup libreria que permite crear schemas
+- Fromik es una libreria react que permite validar y manipular formularios de forma muy eficiente
+- Esta se combina de forma excelente con yup libreria que permite crear schemas
 
 ## Pasos
-    Definir schema por sobre el form
-    `        
+Definir schema por sobre el form
+    # ```        
         const schema = yup.object({
             name: yup.string().required(),
             });
-    `    
+    ```    
 
     
     Agregar componente formik como padre del form
@@ -62,6 +62,6 @@
     ```  
 
 
-![ejercicio-cards](https://github.com/joacososa/react-training/blob/2-agregar-productos/images-tutorial/3-validate-form.PNG)
+![ejercicio-cards](https://github.com/joacososa/react-training/blob/3-validar-formulario/images-tutorial/3-validate-form.PNG)
 
 Lograr montar la estructura de la imagen.
