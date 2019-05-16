@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-class ProductList extends React.Component {
+class Product extends React.Component {
     constructor(props){
         super(props);
     }
@@ -17,8 +17,8 @@ class ProductList extends React.Component {
   }  
 }
 
-ProductList.propTypes = {
+Product.propTypes = {
     product : PropTypes.object,
 }
 
-export default ProductList;
+export default Product;
