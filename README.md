@@ -2,11 +2,11 @@
 
 ## Agregar Validacion al formulario utilizando Formik con Yup
     Proceso de instalacion de formik y yup
-    #`npm install formik yup --save`
+    # `npm install formik yup --save`
 
     En el Componente del formulario 
-    #`import { Formik } from  'formik';`
-    #`import * as yup from 'yup';` 
+    # `import { Formik } from  'formik';`
+    # `import * as yup from 'yup';` 
 
 ## Background:
 
@@ -15,11 +15,11 @@
 
 ## Pasos
     Definir schema por sobre el form
-    ```        
+    `        
         const schema = yup.object({
             name: yup.string().required(),
             });
-    ```    
+    `    
 
     
     Agregar componente formik como padre del form
