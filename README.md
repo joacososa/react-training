@@ -1,67 +1,18 @@
-## Ejercicio 3
+## Ejercicio 4
 
-## Agregar Validacion al formulario utilizando Formik con Yup
-Proceso de instalacion de formik y yup
-    # `npm install formik yup --save`
+## Agregar React router dom al proyecto
 
-En el Componente del formulario 
-    # `import { Formik } from  'formik';`
-    # `import * as yup from 'yup';` 
+# `npm install react-router-dom --save`
 
-## Background:
+## Tareas:
 
-- Fromik es una libreria react que permite validar y manipular formularios de forma muy eficiente
-- Esta se combina de forma excelente con yup libreria que permite crear schemas
+- Incorporar ruteo utilizando BroserRouter
+- Rutear ProductList a la ruta `/`
+- Crear Componente About y rutear hacia el utilizando la ruta `/about`
+- Crear NavBar utilizando `react-bootstrap`, agregar navlinks a Products y a About
 
-## Pasos
-Definir schema por sobre el form
-    # ```        
-        const schema = yup.object({
-            name: yup.string().required(),
-            });
-    ```    
-
-    
-    Agregar componente formik como padre del form
-    ```        
-                <Formik
-                    validationSchema={schema}
-                    onSubmit={this.onSubmit}
-                    >
-                    {({
-                        handleSubmit,
-                        handleChange,
-                        handleBlur,
-                        values,
-                        touched,
-                        isValid,
-                        errors,
-                    }) => (
-                    <Form noValidate onSubmit={handleSubmit}>
-                    .....
-                    .....
-    ```    
-
-    Realizar validacion sobre el From.Control 
-    ```        
-    <Form.Group controlId="formBasicName">
-        <Form.Label>Nombre</Form.Label>
-        <Form.Control
-            name="name"
-            onChange={handleChange}
-            type="text"
-            value={values.name}
-            placeholder="Agregar nombre."
-            onBlur={handleBlur}
-            isInvalid={!!errors.name}
-        />
-        <Form.Control.Feedback type="invalid">
-            {errors.name}
-        </Form.Control.Feedback>
-    </Form.Group>
-    ```  
-
-
-![ejercicio-cards](https://github.com/joacososa/react-training/blob/3-validar-formulario/images-tutorial/3-validate-form.PNG)
-
-Lograr montar la estructura de la imagen.
+# Extras:
+- Agregar Componente `ProductDetail`
+- Rutear hacia el utilizando el id, `this.props.match.id` y `/productDetail/:id`
+- Recibir el parametro como prop, en el componente y obtener los datos del mismo de Products.json
+- Desplegar los datos en pantalla
