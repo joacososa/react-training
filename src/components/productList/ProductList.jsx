@@ -1,46 +1,29 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
+import { productListFetchData } from './productList.actions';
 import Product from './Product/Product';
 import ProductForm from './ProductForm/ProductForm';
+import loader from '../../images/loading.gif';
 
 class ProductList extends React.Component {
-  constructor(){
-      super();
-      this.state = {
-          products: [
-              {
-                  id: 1,
-                  name: 'Vino',
-                  description: 'Alamos Malbec',
-                  imageUrl: 'https://http2.mlstatic.com/vino-alamos-malbec-the-wines-of-catena-D_NQ_NP_781653-MLA27334651688_052018-F.jpg'
-              },
-              {
-                  id: 2,
-                  name: 'Cerveza',
-                  description: 'Ipa Atomica',
-                  imageUrl: 'https://mlstaticquic-a.akamaihd.net/cerveza-artesanal-cabesas-bier-ipa-atomica-D_NQ_NP_648883-MLU27033678870_032018-F.jpg'
-              },
-              {
-                  id:3,
-                  name: 'Fernet',
-                  description: 'Branca Clasico',
-                  imageUrl: 'https://www.encopadebalon.com/3861-large_default/fernet-branca.jpg'
-              }
-           ]
-      }
+  constructor(props){
+      super(props);
   }
     
+  componentDidMount() {
+    this.props.fetchData("http://localhost:3650/products");
+  }
+
   createProductList = () => {
-    return this.state.products.map( p => {
+    return this.props.products.map( p => {
         return ( <Col md={3} key={p.id} > <Product product={p} /> </Col> )
     })
   }
 
   onProductAdded = (product) => {
-    const lastId = Math.max.apply(Math, this.state.products.map(p => p.id));
-    const products = this.state.products;
-    products.unshift({...product, id: lastId + 1});
-    this.setState({products});
+    this.props.fetchData("http://localhost:3650/products");
   }
 
   render(){
@@ -50,12 +33,39 @@ class ProductList extends React.Component {
             <Row>
                 <ProductForm onProductAdded={this.onProductAdded} />
             </Row>
-            <Row>
-                {products}
-            </Row>
+            {
+                !this.props.isLoading ? 
+                <Row>
+                    {products}
+                </Row>
+                :
+                <img src={loader} />
+            }
+         
         </React.Fragment>
     );
   }  
 }
 
-export default ProductList;
+ProductList.propTypes = {
+    fetchData: PropTypes.func.isRequired,
+    products: PropTypes.array.isRequired,
+    hasErrored: PropTypes.bool,
+    isLoading: PropTypes.bool.isRequired
+};
+
+const mapStateToProps = ({productList}) => {
+    return {
+        products: productList.data,
+        hasErrored: productList.error,
+        isLoading: productList.isLoading
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchData: (url) => dispatch(productListFetchData(url))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductList);

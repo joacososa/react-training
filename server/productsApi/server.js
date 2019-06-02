@@ -2,6 +2,7 @@ var express = require('express'),
 app = express(),
 port = process.env.PORT || 3650,
 mongoose = require('mongoose'),
+cors = require('cors');
 Task = require('./api/models/productModel'), //created model loading here
 bodyParser = require('body-parser');
 
@@ -9,6 +10,9 @@ bodyParser = require('body-parser');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/productsdb'); 
 
+app.use(cors({
+    origin: `http://localhost:3000`
+  }));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
