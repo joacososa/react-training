@@ -1,8 +1,7 @@
 ## Ejercicio 5 - api access
 
-## Agregar React router dom al proyecto
-- Instalar MongoDB
-- Instalar Postman
+# - Instalar MongoDB
+# - Instalar Postman
 
 # `new window vscode`
 # `cd server/productsApi`
