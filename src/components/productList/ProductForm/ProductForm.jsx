@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import { Modal, Button, Form, InputGroup } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Formik } from  'formik';
 import * as yup from 'yup'; 
+import { productSave } from '../productList.actions';
 
 const schema = yup.object({
   name: yup.string().required(),
@@ -29,9 +31,18 @@ class ProductForm extends React.Component {
         show: false});
   }
 
+  static getDerivedStateFromProps(props, state){
+        if(props.saveSuccess){
+            props.onProductAdded();
+            return {show: false};
+        }
+        else{
+            return null;
+        }
+    }
+
   onSubmit = (product) => {
-      this.props.onProductAdded(product);
-      this.setState({show: false});
+      this.props.submitProduct('http://localhost:3650/products', product)
   }
 
   render(){
@@ -126,6 +137,24 @@ class ProductForm extends React.Component {
 
 ProductForm.propTypes = {
     onProductAdded: PropTypes.func.isRequired,
+    submitProduct: PropTypes.func.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    hasErrored: PropTypes.bool,
+    saveSuccess: PropTypes.bool.isRequired,
 }
 
-export default ProductForm;
+const mapStateToProps = ({productList}) => {
+    return {
+        hasErrored: productList.saveError,
+        isLoading: productList.saveLoading,
+        saveSuccess: productList.saveSuccess,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        submitProduct: (url, product) => dispatch(productSave(url, product))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductForm);

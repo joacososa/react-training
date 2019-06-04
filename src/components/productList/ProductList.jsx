@@ -6,6 +6,7 @@ import { productListFetchData } from './productList.actions';
 import Product from './Product/Product';
 import ProductForm from './ProductForm/ProductForm';
 import loader from '../../images/loading.gif';
+import './styles.scss';
 
 class ProductList extends React.Component {
   constructor(props){
@@ -18,11 +19,11 @@ class ProductList extends React.Component {
 
   createProductList = () => {
     return this.props.products.map( p => {
-        return ( <Col md={3} key={p.id} > <Product product={p} /> </Col> )
+        return ( <Col md={3} key={p._id} > <Product product={p} /> </Col> )
     })
   }
 
-  onProductAdded = (product) => {
+  onProductAdded = () => {
     this.props.fetchData("http://localhost:3650/products");
   }
 
@@ -39,7 +40,7 @@ class ProductList extends React.Component {
                     {products}
                 </Row>
                 :
-                <img src={loader} />
+                <img className="loader" src={loader} />
             }
          
         </React.Fragment>
